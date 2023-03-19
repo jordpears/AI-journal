@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import {Alert, Button, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {AudioView} from "./src/AudioView";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Button title={"Press Me!"} onPress={() => Alert.alert('Simple Button pressed')}></Button>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <AudioView></AudioView>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
