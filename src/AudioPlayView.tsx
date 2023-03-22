@@ -1,10 +1,16 @@
 import {Button, View} from "react-native";
 import {Audio} from 'expo-av';
-import {useEffect, useState} from "react";
+import {ReactNode, useEffect, useState} from "react";
+import {Sound} from "expo-av/build/Audio/Sound";
 
-export const AudioPlayView = props => {
+type AudioPlayViewProps = {
+    recordingLocation: string;
+    children?: ReactNode
+}
+export const AudioPlayView = (props: AudioPlayViewProps) => {
 
-    const [sound, setSound] = useState();
+
+    const [sound, setSound] = useState<Sound>();
 
     async function playSound() {
         console.debug('Loading Sound');
@@ -29,9 +35,7 @@ export const AudioPlayView = props => {
             <Button title={props.recordingLocation != null ? "Playback Recording" : "No Recording"}
                     disabled={props.recordingLocation == null}
                     onPress={playSound}
-                    style={{margin: 20}}
-            >
-            </Button>
+            />
         </View>
     );
 };
