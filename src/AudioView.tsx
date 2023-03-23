@@ -2,14 +2,12 @@ import {AudioInputView} from "./AudioInputView";
 import {useState} from "react";
 import {AudioPlayView} from "./AudioPlayView";
 import {Button, View} from "react-native";
+import {ServerUtils} from "./ServerUtils";
 
 export const AudioView = () => {
 
-    const uploadAudio = (recordingLocation: string): Promise<void> => {
-        return Promise.resolve();
-    }
-
     const [recordingLocation, setRecordingLocation] = useState('');
+    const [isS3Submitted, setIsS3Submitted] = useState(false);
 
     return (
         <View style={{display: "flex"}}>
@@ -19,9 +17,9 @@ export const AudioView = () => {
             <AudioPlayView
                 recordingLocation={recordingLocation}>
             </AudioPlayView>
-            <Button title={"Send s3 upload request"}
-                    disabled={recordingLocation == ''}
-                    onPress={() => uploadAudio(recordingLocation)}
+            <Button title={!isS3Submitted ? "Send s3 upload request" : "submission successful"}
+                    disabled={recordingLocation == '' || isS3Submitted}
+                    onPress={() => ServerUtils.submitRecording(recordingLocation, setIsS3Submitted)}
             />
         </View>
     );
